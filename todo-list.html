@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To-Do List</title>
+        <script src="https://vuejs.org/js/vue.min.js"></script>
+        <script type="text/javascript"></script>
+    </head>
+    
+    <body>
+    <div id="app">
+        
+        <h1>{{ title }}</h1>
+    
+        <ul id="list">
+            <li v-for="item in list">
+                {{ item.text }}
+            </li>
+        </ul>
+    
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                text: '',
+                title: 'Hello Vue!',
+                list: [{ text: 'Item 1' }, { text: 'Item 2'}]
+            }
+        })
+    </script>
+    </body>
+</html>
