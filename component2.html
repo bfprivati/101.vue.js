@@ -11,22 +11,29 @@
         
         <h1>{{ title }}</h1>
     
-        <ul id="list">
-            <li v-for="item in list">
-                {{ item.text }}
-            </li>
-        </ul>
-    
+        <menu-bar></menu-bar>
+        <menu-bar></menu-bar>
+
     </div>
 
+    <template id="menu">
+        <ul>
+            <li> Item 1</li>
+            <li> Item 2 </li>
+            <li> Item 3 </li>
+        </ul>"
+    </template>
 
     <script>
+        Vue.component('menu-bar', {
+            template: "#menu"
+        });
+
         var app = new Vue({
             el: '#app',
             data: {
                 text: '',
                 title: 'Hello Vue!',
-                list: [{ text: 'Item 1' }, { text: 'Item 2'}]
             }
         })
     </script>
