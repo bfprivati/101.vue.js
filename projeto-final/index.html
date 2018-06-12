@@ -27,22 +27,24 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item" id="app">
-              <a class="nav-link" href="#" @click="ShowAboutModal = true">Sobre</a>
-              <show-about-modal :show="ShowAboutModal" @close="ShowAboutModal = false"></show-about-modal>
-            </li>
-            <li class="nav-item" id="app">
-              <a class="nav-link" href="#" id="show-modal" @click="ShowContactModal = true">Contato</a>
-              <show-contact-modal :show="ShowContactModal" @close="ShowContactModal = false"></show-contact-modal>
-            </li>
-          </ul>
+        <div id="app">
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" @click="ShowAboutModal = true">Sobre</a>
+                <show-about-modal :show="ShowAboutModal" @close="ShowAboutModal = false"></show-about-modal>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="show-modal" @click="ShowContactModal = true">Contato</a>
+                <show-contact-modal :show="ShowContactModal" @close="ShowContactModal = false"></show-contact-modal>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
@@ -162,13 +164,8 @@
       <!-- /.container -->
     </footer>
 
-    <!-- Vue.js for Javascript Components -->
-    <script src="https://unpkg.com/vue"></script>
-    <script scr="vendor/bootstrap/js"></script>
-    <script type="text/javascript"></script>
-
     <!-- template for the modal component -->
-    <script type="x/template" id="modal-template">
+    <script type="text/template" id="modal-template">
       <transition name="modal">
           <div class="modal-mask" @click="close" v-show="show">
               <div class="modal-container" @click.stop>
@@ -179,7 +176,7 @@
     </script>
 
     <!-- template for the NewPostModal component -->
-    <script type="x/template" id="show-about-modal-template">
+    <script type="text/template" id="show-about-modal-template">
       <modal :show="show" @close="close">
           <div class="modal-header">
               <h3>Sobre</h3>
@@ -204,7 +201,7 @@
     </script>
 
     <!-- template for the NewCommentModal component -->
-    <script type="x/template" id="show-contact-modal-template">
+    <script type="text/template" id="show-contact-modal-template">
       <modal :show="show" @close="close">
           <div class="modal-header">
               <h3>Contate-nos!</h3>
@@ -216,6 +213,8 @@
               github.com/bfprivati
               <br>
               <li> Giovanna Cazelato </li>
+              giovannacpires@outlook.com 
+              github.com/giovannaC
               <li> Jonatas Felipe </li>
           </div>
           <div class="modal-footer text-right">
@@ -225,6 +224,11 @@
           </div>
       </modal>
     </script>
+
+    <!-- Vue.js for Javascript Components -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="vendor/bootstrap/js/projeto-final.js"></script>
+    <script type="text/javascript"></script>
 
   </body>
 </html>
