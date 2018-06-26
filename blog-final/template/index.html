@@ -2,129 +2,64 @@
 <html>
 
 <head>
-  <title>Projeto Vue.js</title>
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Project</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+  <link href="styles.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
 </head>
 
 <body>
- <div id="app">
-  <v-app light>
-    <v-content>
-      <v-container>
-        <v-layout row wrap align-center>
+  <div id="app">
+    <v-app>
 
-          <v-flex xs12 md4>
-            <div class="text-xs-center" >
-              <v-avatar size="125px">
-                <img
-                  class="img-circle elevation-7 mb-1"
-                  src="https://vuejs.org/images/logo.png"
-                >
-              </v-avatar>
-              <div class="headline">Projeto <span style="font-weight:bold">Vue.js</span></div>
-              <div class="subheading text-xs-center grey--text pt-1 pb-3">Projeto final de SOO</div>
-              <v-layout justify-space-between>
-                <a href="#" class="body-2">Home</a>
+      <v-toolbar fixed app :clipped-left="clipped">
 
-                <a href="javascript:;" class="body-2" @click="ShowAboutModal = true">Sobre</a>
-                <show-about-modal :show="ShowAboutModal" @close="ShowAboutModal = false"></show-about-modal>
+        <v-toolbar-title v-text="title"></v-toolbar-title>
+        <v-spacer></v-spacer>
 
-                <a href="https://github.com/bfprivati/vue.js" target="_blank" class="body-2">Github</a>
+        <v-menu offset-y>
+          <v-btn slot="activator" color="primary" dark>menu</v-btn>
+          <v-list>
+            <v-list-tile v-for="(item, index) in menu_list" :key="index" @click="">
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
 
-                <a href="javascript:;" class="body-2" @click="ShowLoginModal = true">Login</a>
-                <show-login-modal :show="ShowLoginModal" @close="ShowLoginModal = false"></show-login-modal>
+      </v-toolbar>
 
-              </v-layout>
-            </div>
-          </v-flex>
+      <main>
+        <v-content>
+          <v-container fluid>
+            <page></page>
+          </v-container>
+        </v-content>
+      </main>
 
-          <v-flex xs12 md5 offset-md2>
-            <div v-for="post in posts" :key="post.title">
-              <v-card class="my-3" hover>
-                <v-card-media
-                  class="white--text"
-                  height="170px"
-                  :src="post.imgUrl"
-                >
-                  <v-container fill-height fluid>
-                    <v-layout>
-                      <v-flex xs12 align-end d-flex>
-                        <span class="headline">{{ post.title }}</span>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-card-text>
-                  {{ post.content }}
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn icon class="red--text">
-                    <v-icon medium>fa-reddit</v-icon>
-                  </v-btn>
-                  <v-btn icon class="light-blue--text">
-                    <v-icon medium>fa-twitter</v-icon>
-                  </v-btn>
-                  <v-btn icon class="blue--text text--darken-4">
-                    <v-icon medium>fa-facebook</v-icon>
-                  </v-btn>
-                  <v-spacer></v-spacer>
-                  <v-btn flat class="blue--text">Read More</v-btn>
-                </v-card-actions>
-              </v-card>
-            </div>
-          </v-flex>
 
-        </v-layout>
-      </v-container>
-    </v-content>
+      <!-- <v-footer :fixed="fixed" app>
+        <span>&copy; 2017</span>
+      </v-footer> -->
 
-    <!-- <v-footer class="secondary" app>
-      <v-layout row wrap align-center>
-        <v-flex xs12>
-          <div class="white--text ml-3">
-            Made with
-            <v-icon class="red--text">favorite</v-icon>
-            by <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>
-            and <a class="white--text" href="https://github.com/vwxyzjn" target="_blank">Costa Huang</a>
-          </div>
-        </v-flex>
-      </v-layout>
-    </v-footer> -->
+    </v-app>
+  </div>
 
-  </v-app>
- </div>
- <script src="https://unpkg.com/vue/dist/vue.js"></script>
- <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
- <script src="https://use.fontawesome.com/73c8e2621d.js"></script>
- <script>
-   new Vue({
-    el: '#app',
-    data () {
-      return {
-        title: 'Your Logo',
-        posts: [
-          {
-            title: 'Fusce ullamcorper tellus',
-            content: 'Fusce ullamcorper tellus sed maximus rutrum. Donec imperdiet ultrices maximus. Donec non tellus non neque pellentesque fermentum. Aenean in pellentesque urna.',
-            imgUrl: 'https://raw.githubusercontent.com/vuetifyjs/docs/dev/static/doc-images/cards/drop.jpg'
-          },
-          {
-            title: 'Donec vitae suscipit lectus, a luctus diam.',
-            content: 'Donec vitae suscipit lectus, a luctus diam. Proin vitae felis gravida, lobortis massa sit amet, efficitur erat. Morbi vel ultrices nisi.',
-            imgUrl: 'https://raw.githubusercontent.com/vuetifyjs/docs/dev/static/doc-images/cards/docks.jpg'
-          },
-          {
-            title: 'Vestibulum condimentum quam',
-            content: 'At sagittis sapien vulputate. Vivamus laoreet lacus id magna rutrum dapibus. Donec vel pellentesque arcu. Maecenas mollis odio tempus felis elementum commodo.',
-            imgUrl: 'https://raw.githubusercontent.com/vuetifyjs/docs/dev/static/doc-images/cards/plane.jpg'
-          }
-        ]
-      }
-    }
-  })
- </script>
+  <script type="text/x-template" id="page">
+    <v-layout column align-center>
+
+      <div style="background-color: #A09ABC; margin-top: 100px">
+        oi
+      </div>
+
+    </v-layout>
+  </script>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
