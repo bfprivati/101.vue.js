@@ -11,6 +11,11 @@ new Vue({
             { title: 'login' },
             { title: 'novo' }
         ]
+    },
+    methods: {
+        open_modal: function(title){
+            alert(title);
+        }
     }
 })
 

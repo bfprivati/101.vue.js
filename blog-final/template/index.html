@@ -9,14 +9,13 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
   <link href="style.css" rel="stylesheet" type="text/css">
-  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
 </head>
 
 <body>
   <div id="app">
     <v-app>
 
-      <v-toolbar fixed app :clipped-left="clipped">
+      <v-toolbar fixed app>
 
         <v-toolbar-title v-text="title"></v-toolbar-title>
         <v-spacer></v-spacer>
@@ -24,7 +23,7 @@
         <v-menu offset-y>
           <v-btn slot="activator" color="primary" dark>menu</v-btn>
           <v-list>
-            <v-list-tile v-for="(item, index) in menu_list" :key="index" @click="">
+            <v-list-tile v-for="(item, index) in menu_list" :key="item.id" @click="open_modal(item.title)">
               <v-list-tile-title>{{ item.title }}</v-list-tile-title>
             </v-list-tile>
           </v-list>
@@ -32,31 +31,10 @@
 
       </v-toolbar>
 
-      <main>
-        <v-content>
-          <v-container fluid>
-            <page></page>
-          </v-container>
-        </v-content>
-      </main>
-
-
-      <!-- <v-footer :fixed="fixed" app>
-        <span>&copy; 2017</span>
-      </v-footer> -->
 
     </v-app>
   </div>
 
-  <script type="text/x-template" id="page">
-    <v-layout column align-center>
-
-      <div style="background-color: #A09ABC; margin-top: 100px">
-        oi
-      </div>
-
-    </v-layout>
-  </script>
 
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
