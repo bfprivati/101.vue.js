@@ -1,3 +1,33 @@
+const MODAL_WIDTH = 656
+
+Vue.component('ShowLoginModal', {
+    template: "#login",
+    props: ['show'],
+    data () {
+        return {
+        modalWidth: MODAL_WIDTH
+        }
+    },
+    created () {
+        this.modalWidth = window.innerWidth < MODAL_WIDTH
+        ? MODAL_WIDTH / 2
+        : MODAL_WIDTH
+    },
+    methods: {
+        close: function () {
+            this.$emit('close');
+            this.title = '';
+            this.body = '';
+        },
+        savePost: function () {
+            // Some save logic goes here...
+            
+            this.close();
+        }
+    }
+
+});
+
 Vue.component('page', {
     template: '#page'
 })
@@ -5,18 +35,14 @@ Vue.component('page', {
 new Vue({
     el: '#app',
     data: {
-        title: 'Vue.js Project',
-
+        title: 'PROJETO: Vuejs',
+        ShowLoginModal: false,
         menu_list: [
-            { title: 'login' },
-            { title: 'novo' }
+            { title: 'cadastro' },
+            { title: 'login' }
         ]
     },
-    methods: {
-        open_modal: function(title){
-            alert(title);
-        }
-    }
+
 })
 
 

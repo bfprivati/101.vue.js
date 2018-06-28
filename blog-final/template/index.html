@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue.js Project</title>
+  <title>PROJETO: Vuejs</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
   <link href="style.css" rel="stylesheet" type="text/css">
@@ -19,21 +19,64 @@
 
         <v-toolbar-title v-text="title"></v-toolbar-title>
         <v-spacer></v-spacer>
+        <v-btn @click="ShowAboutModal = true">entrar</v-btn>
 
-        <v-menu offset-y>
+        <!--<v-menu offset-y>
           <v-btn slot="activator" color="primary" dark>menu</v-btn>
           <v-list>
             <v-list-tile v-for="(item, index) in menu_list" :key="item.id" @click="open_modal(item.title)">
               <v-list-tile-title>{{ item.title }}</v-list-tile-title>
             </v-list-tile>
           </v-list>
-        </v-menu>
+        </v-menu> --> 
 
       </v-toolbar>
 
+      <main>
 
+      </main>
+  
     </v-app>
   </div>
+
+  <template id="login">
+    <modal name="login" transition="pop-out" :width="modalWidth" :height="400" :scrollable="true">
+      <div class="box">
+        <div class="box-part" id="bp-left">
+          <div class="partition" id="partition-register">
+            <div class="partition-title">CREATE ACCOUNT</div>
+            <div class="partition-form">
+              <form autocomplete="false">
+    
+                <div class="autocomplete-fix">
+                  <input type="password">
+                </div>
+    
+                <input id="n-email" type="text" placeholder="Email">
+                <input id="n-username" type="text" placeholder="Username">
+                <input id="n-password2" type="password" placeholder="Password">
+              </form>
+    
+              <div style="margin-top: 42px">
+              </div>
+    
+              <div class="button-set">
+                <button id="goto-signin-btn">Sign In</button>
+                <button id="register-btn">Register</button>
+              </div>
+    
+              <button class="large-btn github-btn">connect with <span>github</span></button>
+              <button class="large-btn facebook-btn">connect with <span>facebook</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="box-part" id="bp-right">
+          <div class="box-messages">
+          </div>
+        </div>
+      </div>
+    </modal>
+  </template>
 
 
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
