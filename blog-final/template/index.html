@@ -19,65 +19,247 @@
 
         <v-toolbar-title v-text="title"></v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn @click="ShowAboutModal = true">entrar</v-btn>
 
-        <!--<v-menu offset-y>
-          <v-btn slot="activator" color="primary" dark>menu</v-btn>
-          <v-list>
-            <v-list-tile v-for="(item, index) in menu_list" :key="item.id" @click="open_modal(item.title)">
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-        </v-menu> --> 
+        <v-btn @click="showLoginModal('login-modal')">
+          entrar
+        </v-btn>
+
+        <v-btn @click="showPostModal('post-modal')">
+          posts
+        </v-btn>
+
+        <v-btn @click="showNewPostModal('new-post-modal')">
+          novo post
+        </v-btn>
 
       </v-toolbar>
 
       <main>
 
-      </main>
+          <login-modal name="login-modal" v-show="showModal" @close="showModal = false"></login-modal>
+          <login-modal name="post-moda=" v-show="showModal" @close="showModal = false"></login-modal>
+          <login-modal name="new-post-modal" v-show="showModal" @close="showModal = false"></login-modal>
+      
+     </main>
   
+      <footer>
+        <div class="text-xs-center">
+          <v-pagination :length="15" v-model="page" :total-visible="7"></v-pagination>
+        </div>
+
+      </footer>
+    
     </v-app>
   </div>
 
-  <template id="login">
-    <modal name="login" transition="pop-out" :width="modalWidth" :height="400" :scrollable="true">
-      <div class="box">
-        <div class="box-part" id="bp-left">
-          <div class="partition" id="partition-register">
-            <div class="partition-title">CREATE ACCOUNT</div>
-            <div class="partition-form">
-              <form autocomplete="false">
-    
-                <div class="autocomplete-fix">
-                  <input type="password">
+  <template id="login-modal">
+      <transition name="modal">
+          <div class="modal-mask">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+                  <div class="modal-body">
+                  <div class="box">
+                    <div class="box-part" id="bp-left">
+                      <div class="partition" id="partition-register">
+                        <div class="partition-title" style="text-align: center">ÁREA DE ACESSO</div>
+                        <div style="margin-top: 42px"></div>
+
+                        <div class="partition-form">
+                          <form id="login-form" name="login-form" autocomplete="false" style="align-content: center" action="fazerLogin">   
+
+                            <v-container fluid>
+                                <v-layout row>
+                                  <v-flex xs12>
+                                    <v-text-field
+                                      id="input-email"
+                                      name="input-email"
+                                      label="e-mail"
+                                    ></v-text-field>
+                                  </v-flex>
+                                </v-layout>
+                            </v-container>
+
+                            <v-container fluid>
+                                <v-layout row>
+                                  <v-flex xs12>
+                                    <v-text-field
+                                      id="input-user"
+                                      name="input-user"
+                                      label="usuário"
+                                    ></v-text-field>
+                                  </v-flex>
+                                </v-layout>
+                            </v-container>
+
+                            <v-container fluid>
+                                <v-layout row>
+                                  <v-flex xs12>
+                                    <v-text-field
+                                      name="input-password"
+                                      id="input-password"
+                                      label="senha"
+                                    ></v-text-field>
+                                  </v-flex>
+                                </v-layout>
+                            </v-container>
+
+                              <!-- <v-card-text>
+                                <v-container fluid>
+                                  <v-layout row>
+                                    <v-flex xs12>
+                                      <v-text-field
+                                        id="input-password"
+                                        name="input-password"
+                                        label="Texto"
+                                        textarea
+                                      ></v-text-field>
+                                    </v-flex>
+                                  </v-layout>
+                                </v-container>
+                              </v-card-text> -->
+
+                          </form>
+                
+                          <div style="margin-top: 42px"></div>
+                
+                          <div class="button-set">
+                              <div>
+                                <v-btn id="goto-signin-btn" flat small color="green" @click="$submitLogin($event)">entrar</v-btn>
+                                <v-btn id="register-btn" flat small color="blue" @click="$submitNewUser($event)">registrar</v-btn>
+                                <v-btn id="cancel-btn" flat small color="red" @click="$emit('close')">cancelar</v-btn>
+                              </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-    
-                <input id="n-email" type="text" placeholder="Email">
-                <input id="n-username" type="text" placeholder="Username">
-                <input id="n-password2" type="password" placeholder="Password">
-              </form>
-    
-              <div style="margin-top: 42px">
               </div>
-    
-              <div class="button-set">
-                <button id="goto-signin-btn">Sign In</button>
-                <button id="register-btn">Register</button>
-              </div>
-    
-              <button class="large-btn github-btn">connect with <span>github</span></button>
-              <button class="large-btn facebook-btn">connect with <span>facebook</span></button>
             </div>
           </div>
-        </div>
-        <div class="box-part" id="bp-right">
-          <div class="box-messages">
-          </div>
-        </div>
-      </div>
-    </modal>
+      </transition>
   </template>
 
+  <template id="new-post-modal">
+      <transition name="modal">
+          <div class="modal-mask">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+                  <div class="modal-body">
+                  <div class="box">
+                    <div class="box-part" id="bp-left">
+                      <div class="partition" id="partition-register">
+                        <div class="partition-title" style="text-align: center">NOVO POST</div>
+                        
+                        <div class="partition-form">
+                          <form autocomplete="false">
+                               
+                            <v-card-text>
+                                <v-container fluid>
+                                  <v-layout row>
+                                    <v-flex xs12>
+                                      <v-text-field
+                                        name="input-password"
+                                        id="input-password"
+                                        label="texto"
+                                        textarea
+                                      ></v-text-field>
+                                    </v-flex>
+                                  </v-layout>
+                                </v-container>
+                              </v-card-text>
+    
+                              <v-container fluid>
+                                  <v-layout row>
+                                    <v-flex xs12>
+                                      <v-text-field
+                                        name="input-tag"
+                                        id="input-tag"
+                                        label="tag"
+                                      ></v-text-field>
+                                    </v-flex>
+                                  </v-layout>
+                              </v-container>
+
+                          </form>
+                
+                          <div style="margin-top: 42px">
+                          </div>
+                
+                          <div class="button-set">
+                              <div>
+                                <v-btn id="goto-signin-btn" flat small color="green" @click="$submit('')">postar</v-btn>
+                                <v-btn id="cancel-btn" flat small color="red" @click="$emit('close')">cancelar</v-btn>
+                              </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </transition>
+  </template>
+
+  <template id="post-modal">
+      <transition name="modal">
+          <div class="modal-mask">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+                  <div class="modal-body">
+                  <div class="box">
+                    <div class="box-part" id="bp-left">
+                      <div class="partition" id="partition-register">
+                        <div class="partition-title">ÁREA DE ACESSO</div>
+                        <div class="partition-form">
+                          <form autocomplete="false">
+                
+                            <div class="autocomplete-fix">
+                              <input type="password">
+                            </div>
+                
+                            <input id="n-email" type="text" placeholder="Email">
+                            <br></br>
+                            <input id="n-username" type="text" placeholder="Username">
+                            <br></br>
+                            <input id="n-password2" type="password" placeholder="Password">
+                          </form>
+                
+                          <div style="margin-top: 42px">
+                          </div>
+                
+                          <div class="react-button-set">
+                            
+                            <v-btn flat icon color="pink lighten-2" id="favorite-btn">
+                              <v-icon>favorite</v-icon>
+                            </v-btn>
+                            <v-btn flat icon color="green lighten-2" id="like-btn">
+                                <v-icon>thumb_up</v-icon>
+                            </v-btn>
+                            <v-btn flat icon color="red lighten-2" id="dislike-btn">
+                                <v-icon>thumb_down</v-icon>
+                            </v-btn>
+                          
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box-part" id="bp-right">
+                      <div class="box-messages">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </transition>
+  </template>
 
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
