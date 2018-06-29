@@ -36,21 +36,53 @@
 
       <main>
 
-          <login-modal name="login-modal" v-show="showModal" @close="showModal = false"></login-modal>
-          <login-modal name="post-moda=" v-show="showModal" @close="showModal = false"></login-modal>
-          <login-modal name="new-post-modal" v-show="showModal" @close="showModal = false"></login-modal>
-      
-     </main>
-  
-      <footer>
-        <div class="text-xs-center">
-          <v-pagination :length="15" v-model="page" :total-visible="7"></v-pagination>
-        </div>
+        <login-modal name="login-modal" v-show="showModalLogin" @close="showModalLogin = false"></login-modal>
+        <post-modal name="post-moda=" v-show="showModalPost" @close="showModalPost = false"></post-modal>
+        <new-post-modal name="new-post-modal" v-show="showModalNewPost" @close="showModalNewPost = false"></new-post-modal>
 
-      </footer>
-    
+        <v-flex xs12 md5 offset-md2>
+          <div v-for="post in posts" :key="post.title">
+            <v-card class="my-3" hover>
+              <v-card-media
+                class="white--text"
+                height="170px"
+                :src="post.imgUrl"
+              >
+                <v-container fill-height fluid>
+                  <v-layout>
+                    <v-flex xs12 align-end d-flex>
+                      <span class="headline">{{ post.title }}</span>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card-media>
+              <v-card-text>
+                {{ post.content }}
+              </v-card-text>
+            </v-card>
+          </div>
+        </v-flex>
+
+      </main>
+
+      <v-footer class="footer gray darken-2">
+        <v-layout row wrap align-center>
+          <v-flex xs12>
+            <div class="black--text ml-3">
+              Made by
+              <a class="black--text" href="https://github.com/bfprivati">Bianca Privati</a>
+              , <a class="black--text" href="https://github.com/bfprivati">Giovanna Cazelato</a>
+              and <a class="black--text" href="https://github.com/bfprivati">Jonatas Felipe</a>
+              using <a class="black--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-footer>
+
     </v-app>
   </div>
+
+
 
   <template id="login-modal">
       <transition name="modal">
@@ -65,7 +97,7 @@
                         <div style="margin-top: 42px"></div>
 
                         <div class="partition-form">
-                          <form id="login-form" name="login-form" autocomplete="false" style="align-content: center" action="fazerLogin">   
+                          <form id="login-form" name="login-form" autocomplete="false" style="align-content: center" action="fazerLogin">
 
                             <v-container fluid>
                                 <v-layout row>
@@ -83,18 +115,6 @@
                                 <v-layout row>
                                   <v-flex xs12>
                                     <v-text-field
-                                      id="input-user"
-                                      name="input-user"
-                                      label="usuário"
-                                    ></v-text-field>
-                                  </v-flex>
-                                </v-layout>
-                            </v-container>
-
-                            <v-container fluid>
-                                <v-layout row>
-                                  <v-flex xs12>
-                                    <v-text-field
                                       name="input-password"
                                       id="input-password"
                                       label="senha"
@@ -103,25 +123,10 @@
                                 </v-layout>
                             </v-container>
 
-                              <!-- <v-card-text>
-                                <v-container fluid>
-                                  <v-layout row>
-                                    <v-flex xs12>
-                                      <v-text-field
-                                        id="input-password"
-                                        name="input-password"
-                                        label="Texto"
-                                        textarea
-                                      ></v-text-field>
-                                    </v-flex>
-                                  </v-layout>
-                                </v-container>
-                              </v-card-text> -->
-
                           </form>
-                
+
                           <div style="margin-top: 42px"></div>
-                
+
                           <div class="button-set">
                               <div>
                                 <v-btn id="goto-signin-btn" flat small color="green" @click="$submitLogin($event)">entrar</v-btn>
@@ -145,16 +150,16 @@
       <transition name="modal">
           <div class="modal-mask">
             <div class="modal-wrapper">
-              <div class="modal-container">
+              <div class="modal-post-container">
                   <div class="modal-body">
                   <div class="box">
                     <div class="box-part" id="bp-left">
                       <div class="partition" id="partition-register">
                         <div class="partition-title" style="text-align: center">NOVO POST</div>
-                        
+
                         <div class="partition-form">
                           <form autocomplete="false">
-                               
+
                             <v-card-text>
                                 <v-container fluid>
                                   <v-layout row>
@@ -169,7 +174,7 @@
                                   </v-layout>
                                 </v-container>
                               </v-card-text>
-    
+
                               <v-container fluid>
                                   <v-layout row>
                                     <v-flex xs12>
@@ -183,10 +188,10 @@
                               </v-container>
 
                           </form>
-                
+
                           <div style="margin-top: 42px">
                           </div>
-                
+
                           <div class="button-set">
                               <div>
                                 <v-btn id="goto-signin-btn" flat small color="green" @click="$submit('')">postar</v-btn>
@@ -209,41 +214,34 @@
       <transition name="modal">
           <div class="modal-mask">
             <div class="modal-wrapper">
-              <div class="modal-container">
+              <div class="modal-post-container">
                   <div class="modal-body">
                   <div class="box">
                     <div class="box-part" id="bp-left">
                       <div class="partition" id="partition-register">
-                        <div class="partition-title">ÁREA DE ACESSO</div>
+                        <div class="partition-title"> TÍTULO </div>
+
                         <div class="partition-form">
                           <form autocomplete="false">
-                
-                            <div class="autocomplete-fix">
-                              <input type="password">
-                            </div>
-                
-                            <input id="n-email" type="text" placeholder="Email">
-                            <br></br>
-                            <input id="n-username" type="text" placeholder="Username">
-                            <br></br>
-                            <input id="n-password2" type="password" placeholder="Password">
+
+
                           </form>
-                
+
                           <div style="margin-top: 42px">
                           </div>
-                
+
                           <div class="react-button-set">
-                            
+
                             <v-btn flat icon color="pink lighten-2" id="favorite-btn">
                               <v-icon>favorite</v-icon>
                             </v-btn>
                             <v-btn flat icon color="green lighten-2" id="like-btn">
                                 <v-icon>thumb_up</v-icon>
                             </v-btn>
-                            <v-btn flat icon color="red lighten-2" id="dislike-btn">
+                            <v-btn flat icon color="red lighten-2" id="dislike-btn" @click="$emit('close')">
                                 <v-icon>thumb_down</v-icon>
                             </v-btn>
-                          
+
                           </div>
 
                         </div>
@@ -261,8 +259,11 @@
       </transition>
   </template>
 
+
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
   <script src="js.js"></script>
+
+
 </body>
 </html>
