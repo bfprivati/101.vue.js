@@ -83,7 +83,12 @@
 
 .modal-default-button {
   float: center;
-}*/
+}
+
+.partition-title {
+  font-size: 2em;
+  text-align: center;
+}
 
 /*
  * The following styles are auto-applied to elements with
@@ -118,4 +123,18 @@
   align-content: center;
   bottom: 0;
   width: 100%;
+}
+
+.corpo {
+  position: fixed;
+  align-content: center;
+  top: 100px;
+  width: 100%;
+}
+
+.body-grid {
+  position: fixed;
+  top: 100px;
+  width: 100%;
+  height: 100%;
 }

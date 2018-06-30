@@ -2,14 +2,17 @@ Vue.component('login-modal', {
     template: "#login-modal",
 });
 
-Vue.component('post-modal', {
-    template: "#post-modal",
-});
-
 Vue.component('new-post-modal', {
     template: "#new-post-modal",
 });
 
+Vue.component('post-modal', {
+    template: "#post-modal",
+});
+
+Vue.component('body-grid', {
+    template: "#body-grid",
+})
 
 Vue.component('page', {
     template: '#page'
@@ -24,10 +27,11 @@ new Vue({
         showModalLogin: false,
         showModalPost: false,
         showModalNewPost: false,
+        showPostCards: true,
         menu_list: [
             { title: 'cadastro' },
             { title: 'login' }
-        ]
+        ],
     },
     components: {
     },
