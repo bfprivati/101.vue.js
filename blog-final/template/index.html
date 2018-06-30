@@ -72,7 +72,7 @@
                     <div class="box-part" id="bp-left">
                       <div class="partition" id="partition-register">
                         <div class="partition-title">ÁREA DE ACESSO</div>
-                        <div style="margin-top: 42px"></div>
+                        <div style="margin-top: 40px"></div>
 
                         <div class="partition-form">
                           <form id="login-form" name="login-form" autocomplete="false" style="align-content: center" action="fazerLogin">
@@ -83,7 +83,7 @@
                                     <v-text-field
                                       id="input-email"
                                       name="input-email"
-                                      label="e-mail"
+                                      placeholder="e-mail"
                                     ></v-text-field>
                                   </v-flex>
                                 </v-layout>
@@ -95,24 +95,23 @@
                                     <v-text-field
                                       name="input-password"
                                       id="input-password"
-                                      label="senha"
+                                      placeholder="senha"
                                     ></v-text-field>
                                   </v-flex>
                                 </v-layout>
                             </v-container>
 
+                            </div>
+                            <div style="margin-top: 40px"></div>
+
+                            <div class="button-set-login">
+                                <div>
+                                  <v-btn id="goto-signin-btn" flat small color="green" @click="$submitLogin($event)">entrar</v-btn>
+                                  <v-btn id="register-btn" flat small color="blue" @click="$submitNewUser($event)">registrar</v-btn>
+                                  <v-btn id="cancel-btn" flat small color="red" @click="$emit('close')">cancelar</v-btn>
+                                </div>
+                            </div>
                           </form>
-
-                          <div style="margin-top: 42px"></div>
-
-                          <div class="button-set">
-                              <div>
-                                <v-btn id="goto-signin-btn" flat small color="green" @click="$submitLogin($event)">entrar</v-btn>
-                                <v-btn id="register-btn" flat small color="blue" @click="$submitNewUser($event)">registrar</v-btn>
-                                <v-btn id="cancel-btn" flat small color="red" @click="$emit('close')">cancelar</v-btn>
-                              </div>
-                          </div>
-
                         </div>
                       </div>
                     </div>
@@ -132,51 +131,36 @@
                   <div class="modal-body">
                   <div class="box">
                     <div class="box-part" id="bp-left">
-                      <div class="partition" id="partition-register">
+                      <div class="partition" id="partition-post">
+                        
                         <div class="partition-title">NOVO POST</div>
+                        <div style="margin-top: 40px"></div>
 
                         <div class="partition-form">
-                          <form autocomplete="false">
-
-                            <v-card-text>
-                                <v-container fluid>
-                                  <v-layout row>
-                                    <v-flex xs12>
-                                      <v-text-field
-                                        name="input-title"
-                                        id="input-title"
-                                        label="texto"
-                                        outline
-                                        ></v-text-field>
-                                      </v-flex>
-                                  </v-layout>
-                                </v-container>
-                              </v-card-text>
-
-                              <v-container fluid>
-                                  <v-layout row>
-                                    <v-flex xs12>
-                                      <v-text-field
-                                        name="input-tag"
-                                        id="input-tag"
-                                        label="tag"
-                                      ></v-text-field>
-                                    </v-flex>
-                                  </v-layout>
+                            <form id="new-post-form" name="new-post-form" autocomplete="false" style="align-content: center" action="criarPost">
+                          
+                            <v-container fluid grid-list-md>
+                                <v-layout row>
+                                  <v-flex xs12>
+                                    <v-textarea
+                                      name="input-text"
+                                      id="input-text"
+                                      placeholder="tell me more, tell me more, nananananana... "
+                                      auto-grow                                
+                                    ></v-textarea>
+                                  </v-flex>
+                                </v-layout>
                               </v-container>
 
-                          </form>
+                              <div style="margin-top: 40px"></div>
 
-                          <div style="margin-top: 42px">
-                          </div>
-
-                          <div class="button-set">
-                              <div>
-                                <v-btn id="goto-signin-btn" flat small color="green" @click="$submit('')">postar</v-btn>
-                                <v-btn id="cancel-btn" flat small color="red" @click="$emit('close')">cancelar</v-btn>
+                              <div class="button-set-new-post">
+                                  <div>
+                                    <v-btn id="goto-signin-btn" flat small color="green" @click="$submitPost('$event')">postar</v-btn>
+                                    <v-btn id="cancel-btn" flat small color="red" @click="$emit('close')">cancelar</v-btn>
+                                  </div>
                               </div>
-                          </div>
-
+                          </form>
                         </div>
                       </div>
                     </div>
@@ -190,7 +174,43 @@
 
 <!-- //////////////////// output //////////////////// -->
 
-  <template id="post-modal">
+  <template id="body-grid" class="body-grid">
+    <v-container grid-list-md text-xs-center>
+      <v-layout row wrap>
+        <v-flex v-for="i in 3" :key="`4${i}`" xs4>
+          
+          <v-card>
+            <v-card-text class="px-0">
+
+              <div class="partition-title"> TÍTULO </div>
+              <div style="margin-top: 42px"></div>
+
+              <div class="partition-form">
+                  texto do post aqui
+              </div>
+              <div style="margin-top: 42px"></div>
+
+              <div class="react-button-set">
+
+                <v-btn flat icon color="pink lighten-2" id="favorite-btn">
+                  <v-icon>favorite</v-icon>
+                </v-btn>
+                <v-btn flat icon color="green lighten-2" id="like-btn">
+                    <v-icon>thumb_up</v-icon>
+                </v-btn>
+                <v-btn flat icon color="red lighten-2" id="dislike-btn" @click="$emit('close')">
+                    <v-icon>thumb_down</v-icon>
+                </v-btn>
+
+              </div>
+            </v-card-text>
+          </v-card>
+
+      </v-layout>
+    </v-container>
+  </template>
+
+  <!-- <template id="post-modal">
       <transition name="modal">
           <div class="modal-mask">
             <div class="modal-wrapper">
@@ -234,43 +254,7 @@
             </div>
           </div>
       </transition>
-  </template>
-
-  <template id="body-grid" class="body-grid">
-    <v-container grid-list-md text-xs-center>
-      <v-layout row wrap>
-        <v-flex v-for="i in 3" :key="`4${i}`" xs4>
-          
-          <v-card>
-            <v-card-text class="px-0">
-
-              <div class="partition-title"> TÍTULO </div>
-              <div style="margin-top: 42px"></div>
-
-              <div class="partition-form">
-                  texto do post aqui
-              </div>
-              <div style="margin-top: 42px"></div>
-
-              <div class="react-button-set">
-
-                <v-btn flat icon color="pink lighten-2" id="favorite-btn">
-                  <v-icon>favorite</v-icon>
-                </v-btn>
-                <v-btn flat icon color="green lighten-2" id="like-btn">
-                    <v-icon>thumb_up</v-icon>
-                </v-btn>
-                <v-btn flat icon color="red lighten-2" id="dislike-btn" @click="$emit('close')">
-                    <v-icon>thumb_down</v-icon>
-                </v-btn>
-
-              </div>
-            </v-card-text>
-          </v-card>
-
-      </v-layout>
-    </v-container>
-  </template>
+  </template> -->
 
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>

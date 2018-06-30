@@ -28,10 +28,6 @@ new Vue({
         showModalPost: false,
         showModalNewPost: false,
         showPostCards: true,
-        menu_list: [
-            { title: 'cadastro' },
-            { title: 'login' }
-        ],
     },
     components: {
     },
@@ -52,6 +48,10 @@ new Vue({
         submiNewUser: function (event) {
             event.preventDefault();
             document.getElementById('login-form').submit();
+        },
+        submitPost: function event() {
+            event.preventDefault();
+            document.getElementById('new-post-form').submit();
         }
     }
 
