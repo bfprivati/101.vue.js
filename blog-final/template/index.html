@@ -42,7 +42,7 @@
 
       </div>
 
-      <v-footer class="footer gray darken-2">
+      <!-- <v-footer class="footer gray darken-2">
         <v-layout row wrap align-center>
           <v-flex xs12>
             <div class="black--text ml-3">
@@ -55,7 +55,7 @@
             </div>
           </v-flex>
         </v-layout>
-      </v-footer>
+      </v-footer> -->
 
     </v-app>
   </div>
@@ -75,7 +75,7 @@
                         <div style="margin-top: 40px"></div>
 
                         <div class="partition-form">
-                          <form id="login-form" name="login-form" autocomplete="false" style="align-content: center" action="fazerLogin">
+                          <form id="login-form" name="login-form" autocomplete="false" style="align-content: center" action="fazerLogin" method="POST">
 
                             <v-container fluid>
                                 <v-layout row>
@@ -137,20 +137,30 @@
                         <div style="margin-top: 40px"></div>
 
                         <div class="partition-form">
-                            <form id="new-post-form" name="new-post-form" autocomplete="false" style="align-content: center" action="criarPost">
+                            <form id="new-post-form" name="new-post-form" autocomplete="false" style="align-content: center" action="criarPost" method="POST">
                           
-                            <v-container fluid grid-list-md>
-                                <v-layout row>
-                                  <v-flex xs12>
-                                    <v-textarea
-                                      name="input-text"
-                                      id="input-text"
-                                      placeholder="tell me more, tell me more, nananananana... "
-                                      auto-grow                                
-                                    ></v-textarea>
+                              <v-container fluid grid-list-md>
+                                <v-flex xs12>
+                                  <v-textarea
+                                    name="input-text"
+                                    id="input-text"
+                                    placeholder="tell me more, tell me more, nananananana... "
+                                    auto-grow                                
+                                  ></v-textarea>
                                   </v-flex>
-                                </v-layout>
                               </v-container>
+
+                              <div style="margin-top: 40px"></div>
+
+                              <v-flex xs12 sm12>
+                                <v-select v-model="select"
+                                  :items="items"
+                                  attach
+                                  chips
+                                  placeholder="tags"
+                                  multiple
+                                ></v-select>
+                              </v-flex> 
 
                               <div style="margin-top: 40px"></div>
 

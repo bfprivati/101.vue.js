@@ -12,12 +12,11 @@ Vue.component('post-modal', {
 
 Vue.component('body-grid', {
     template: "#body-grid",
-})
+});
 
 Vue.component('page', {
     template: '#page'
-})
-
+});
 
 new Vue({
     el: '#app',
@@ -28,6 +27,8 @@ new Vue({
         showModalPost: false,
         showModalNewPost: false,
         showPostCards: true,
+        tag_items: 5,
+        items: ['TAG1', 'TAG2', 'TAG2', 'TAG4','TAG5']
     },
     components: {
     },
